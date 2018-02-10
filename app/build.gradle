@@ -5,7 +5,7 @@ android {
     buildToolsVersion rootProject.ext.buildToolsVersion
 
     defaultConfig {
-        applicationId "com.willblaschko.android.alexavoicelibrary"
+        applicationId "com.austin.android.alexa"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode rootProject.ext.versionCode
@@ -61,7 +61,7 @@ dependencies {
     compile 'com.android.support:recyclerview-v7:24.2.1'
     compile 'com.android.support:multidex:1.0.1'
     compile 'com.squareup.okhttp3:okhttp:3.2.0'
-    compile project(path: ':libs:AlexaAndroid')
+    compile project(path: ':libs:AlexaSDK')
     compile project(path: ':libs:RecorderLevelView')
     compile project(path: ':libs:speechutils')
 }

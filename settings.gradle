@@ -1,4 +1,4 @@
 include ':app',
-        ':libs:AlexaAndroid',
+        ':libs:AlexaSDK',
         ':libs:RecorderLevelView',
         ':libs:speechutils'

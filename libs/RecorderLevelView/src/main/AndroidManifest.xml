@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.willblaschko.android.recorderview">
+    package="com.austin.android.recorderview">
 
     <application/>
 
