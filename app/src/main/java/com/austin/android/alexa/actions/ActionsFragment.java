@@ -58,7 +58,7 @@ public class ActionsFragment extends BaseListenerFragment {
                         loadFragment(new SendAudioActionFragment());
                     }
                 }));
-
+        /*
         items.add(new ActionFragmentAdapter.ActionFragmentItem(getString(R.string.fragment_action_send_prerecorded),
                 android.R.drawable.ic_menu_compass,
                 new View.OnClickListener() {
@@ -67,6 +67,7 @@ public class ActionsFragment extends BaseListenerFragment {
                         loadFragment(new SendPrerecordedActionFragment());
                     }
                 }));
+        */
         items.add(new ActionFragmentAdapter.ActionFragmentItem(getString(R.string.fragment_action_send_text),
                 android.R.drawable.ic_menu_edit,
                 new View.OnClickListener() {
