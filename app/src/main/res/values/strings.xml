@@ -6,4 +6,15 @@
     <string name="fragment_action_send_text">Send Text</string>
     <string name="fragment_action_send_audio">Send Audio</string>
     <string name="fragment_action_send_prerecorded">Send Prerecorded Audio</string>
+    <string name="more"></string>
+    <string name="share">Share</string>
+    <string name="help">Help</string>
+    <string name="about">About</string>
+    <string name="info">Information</string>
+    <string name="about_text">Alexa™ is a intelligent voice assistant. It is a product developed by Amazon. The Android™ version is the same as Echo. It can connects to the Alexa Voice Service to play music, make calls, send and receive messages, provide information, news, sports scores, weather, and more—instantly. All you have to do is ask.</string>
+    <string name="about_copyright" translatable="false">Copyright &#169; 2017&#8211;2018 by Alexa.\n</string>
+    <string name="help_text">1. Conditions of use: This program needs to login Amazon to normal use, so it will pop-up a links to Amazon\'s website and authorize at first running. \n\n2. Instructions: There is a microphone icon in the middle of the surface. Click the icon to start recording. Click again to end the recording. Please record your question in the recording state, and Alexa\'s voice service will return to the result through a speaker after a few moments. \n\n3. If this document does not help you, send an email to the wcfds@sina.com request help.</string>
+    <string name="share_tittle">Share a good APP</string>
+    <string name="share_content">Alexa voice assistant, just ask!</string>
+    <string name="share_url">www.mi.com</string>
 </resources>
