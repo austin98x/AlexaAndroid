@@ -51,7 +51,7 @@ public class SendAudioActionFragment extends BaseListenerFragment {
             public void onClick(View v) {
                 if(recorder == null) {
                     startListening();
-                }else{
+                } else {
                     stopListening();
                 }
             }
@@ -82,11 +82,10 @@ public class SendAudioActionFragment extends BaseListenerFragment {
             case MY_PERMISSIONS_REQUEST_RECORD_AUDIO: {
                 // If request is cancelled, the result arrays are empty.
                 if (!(grantResults.length > 0
-                        && grantResults[0] == PackageManager.PERMISSION_GRANTED)){
+                        && grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
                     getActivity().getSupportFragmentManager().beginTransaction().remove(this).commit();
                 }
             }
-
         }
     }
 
@@ -103,7 +102,7 @@ public class SendAudioActionFragment extends BaseListenerFragment {
 
     @Override
     public void startListening() {
-        if(recorder == null){
+        if(recorder == null) {
             recorder = new RawAudioRecorder(AUDIO_RATE);
         }
         recorder.start();
@@ -127,7 +126,7 @@ public class SendAudioActionFragment extends BaseListenerFragment {
                     if(sink != null && recorder != null) {
                         sink.write(recorder.consumeRecording());
                     }
-                    if(BuildConfig.DEBUG){
+                    if(BuildConfig.DEBUG) {
                         Log.i(TAG, "Received audio");
                         Log.i(TAG, "RMSDB: " + rmsdb);
                     }
@@ -141,7 +140,6 @@ public class SendAudioActionFragment extends BaseListenerFragment {
             }
             stopListening();
         }
-
     };
 
     private void stopListening(){

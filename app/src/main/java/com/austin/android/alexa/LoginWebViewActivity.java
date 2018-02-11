@@ -13,7 +13,7 @@ import android.webkit.WebViewClient;
  */
 public class LoginWebViewActivity extends Activity {
 
-    private static final String TAG = "LoginWebViewActivity";
+    private static final String TAG = "Alexa/LoginWebViewActivity";
 
     WebView mWebView;
 
@@ -32,9 +32,9 @@ public class LoginWebViewActivity extends Activity {
         Intent intent = getIntent();
         Uri data = intent.getData();
 
-        if(data != null){
+        if(data != null) {
             mWebView.loadUrl(data.toString());
-        }else{
+        } else {
             finish();
         }
     }
@@ -42,18 +42,18 @@ public class LoginWebViewActivity extends Activity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode == RESULT_LOGIN){
+        if(requestCode == RESULT_LOGIN) {
             LoginWebViewActivity.this.finish();
         }
     }
 
-    WebViewClient mWebViewClient = new WebViewClient(){
+    WebViewClient mWebViewClient = new WebViewClient() {
         @Override
         public boolean shouldOverrideUrlLoading(WebView view, String url) {
-            if(BuildConfig.DEBUG){
+            if(BuildConfig.DEBUG) {
                 Log.i(TAG, url);
             }
-            if(url.startsWith("http") || url.startsWith("https")){
+            if(url.startsWith("http") || url.startsWith("https")) {
                 return super.shouldOverrideUrlLoading(view, url);
             }
 
@@ -63,7 +63,5 @@ public class LoginWebViewActivity extends Activity {
 
             return true;
         }
-
-
     };
 }

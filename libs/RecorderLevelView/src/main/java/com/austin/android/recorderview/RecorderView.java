@@ -69,7 +69,7 @@ public class RecorderView extends View {
         setRmsdbLevel(1);
     }
 
-    private void init(){
+    private void init() {
         backgroundPaint = new Paint();
         backgroundPaint.setColor(0x66000000);
         backgroundPaint.setStyle(Paint.Style.FILL);
@@ -80,12 +80,12 @@ public class RecorderView extends View {
         wavePaint.setStyle(Paint.Style.FILL);
     }
 
-    public void setRmsdbLevel(float level){
+    public void setRmsdbLevel(float level) {
         rmsdbLevel = level;
         postInvalidate();
     }
 
-    public void setIndicatorColor(int color){
+    public void setIndicatorColor(int color) {
         wavePaint.setColor(color);
         postInvalidate();
     }
@@ -96,41 +96,19 @@ public class RecorderView extends View {
 
         canvas.drawCircle(width / 2, height / 2, getRadius(), wavePaint);
 
-        if(microphone == null){
+        if(microphone == null) {
             microphone = ContextCompat.getDrawable(getContext(), R.drawable.microphone);
             microphone.setFilterBitmap(true);
             microphone.setBounds((width - imageSize) / 2, (height - imageSize) / 2, width - ((width - imageSize) / 2), height - ((height - imageSize) / 2));
         }
 
         microphone.draw(canvas);
-
-//
-//        rotation+=ROTATION_SPEED;
-//        postInvalidateDelayed(100);
     }
 
-    private float getRadius(){
+    private float getRadius() {
         float percent = (float) (rmsdbLevel * Math.log(rmsdbLevel)) * .01f;
         percent = Math.min(Math.max(percent, 0f), 1f);
         percent = .55f  + .45f * percent;
         return percent * ((float) min) / 2f;
     }
-//
-//    Path wavePath;
-//    private Path getPath(){
-//
-//        wavePath = new Path();
-//
-//        wavePath.moveTo();
-//
-//        for(int i = 0; i < 360 / waveRotation; i++){
-//
-//        }
-//
-//        return wavePath;
-//    }
-//
-//    private void getArcPoint(int degree, float value){
-//
-//    }
 }

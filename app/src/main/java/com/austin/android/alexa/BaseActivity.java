@@ -47,7 +47,7 @@ import static com.austin.android.alexa.global.Constants.PRODUCT_ID;
 
 public abstract class BaseActivity extends AppCompatActivity implements BaseListenerFragment.AvsListenerInterface{
 
-    private final static String TAG = "BaseActivity";
+    private final static String TAG = "Alexa/BaseActivity";
 
     private final static int STATE_LISTENING = 1;
     private final static int STATE_PROCESSING = 2;
@@ -79,24 +79,19 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseList
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        if(audioPlayer != null){
+        if(audioPlayer != null) {
             //remove callback to avoid memory leaks
             audioPlayer.removeCallback(alexaAudioPlayerCallback);
             audioPlayer.release();
         }
     }
 
-
     @Override
     public AsyncCallback<AvsResponse, Exception> getRequestCallback() {
         return requestCallback;
     }
 
-
-
-
-
-    private void initAlexaAndroid(){
+    private void initAlexaAndroid() {
         //get our AlexaManager instance for convenience
         alexaManager = AlexaManager.getInstance(this, PRODUCT_ID);
 
@@ -108,7 +103,6 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseList
 
         //open our downchannel
         //alexaManager.sendOpenDownchannelDirective(requestCallback);
-
 
         //synchronize our device
         //alexaManager.sendSynchronizeStateEvent(requestCallback);
@@ -130,17 +124,17 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseList
             if(BuildConfig.DEBUG) {
                 //Log.i(TAG, "Player percent: " + percent);
             }
-            if(item instanceof AvsPlayContentItem || item == null){
+            if(item instanceof AvsPlayContentItem || item == null) {
                 return;
             }
-            if(!playbackStartedFired){
+            if(!playbackStartedFired) {
                 if(BuildConfig.DEBUG) {
                     Log.i(TAG, "PlaybackStarted " + item.getToken() + " fired: " + percent);
                 }
                 playbackStartedFired = true;
                 sendPlaybackStartedEvent(item);
             }
-            if(!almostDoneFired && percent > .8f){
+            if(!almostDoneFired && percent > .8f) {
                 if(BuildConfig.DEBUG) {
                     Log.i(TAG, "AlmostDone " + item.getToken() + " fired: " + percent);
                 }
@@ -175,8 +169,6 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseList
         public void dataError(AvsItem item, Exception e) {
             e.printStackTrace();
         }
-
-
     };
 
     /**
@@ -239,7 +231,7 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseList
                 @Override
                 public void run() {
                     long totalTime = System.currentTimeMillis() - startTime;
-                    Toast.makeText(BaseActivity.this, "Total request time: "+totalTime+" miliseconds", Toast.LENGTH_LONG).show();
+                    Toast.makeText(BaseActivity.this, "Total request time: " + totalTime + " miliseconds", Toast.LENGTH_LONG).show();
                     //Log.i(TAG, "Total request time: "+totalTime+" miliseconds");
                 }
             });
@@ -250,14 +242,14 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseList
      * Handle the response sent back from Alexa's parsing of the Intent, these can be any of the AvsItem types (play, speak, stop, clear, listen)
      * @param response a List<AvsItem> returned from the mAlexaManager.sendTextRequest() call in sendVoiceToAlexa()
      */
-    private void handleResponse(AvsResponse response){
+    private void handleResponse(AvsResponse response) {
         boolean checkAfter = (avsQueue.size() == 0);
-        if(response != null){
+        if(response != null) {
             //if we have a clear queue item in the list, we need to clear the current queue before proceeding
             //iterate backwards to avoid changing our array positions and getting all the nasty errors that come
             //from doing that
-            for(int i = response.size() - 1; i >= 0; i--){
-                if(response.get(i) instanceof AvsReplaceAllItem || response.get(i) instanceof AvsReplaceEnqueuedItem){
+            for(int i = response.size() - 1; i >= 0; i--) {
+                if(response.get(i) instanceof AvsReplaceAllItem || response.get(i) instanceof AvsReplaceEnqueuedItem) {
                     //clear our queue
                     avsQueue.clear();
                     //remove item
@@ -265,8 +257,8 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseList
                 }
             }
             Log.i(TAG, "Adding "+response.size()+" items to our queue");
-            if(BuildConfig.DEBUG){
-                for (int i = 0; i < response.size(); i++){
+            if(BuildConfig.DEBUG) {
+                for (int i = 0; i < response.size(); i++) {
                     Log.i(TAG, "\tAdding: "+response.get(i).getToken());
                 }
             }
@@ -276,7 +268,6 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseList
             checkQueue();
         }
     }
-
 
     /**
      * Check our current queue of items, and if we have more to parse (once we've reached a play or listen callback) then proceed to the
@@ -294,8 +285,8 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseList
                 @Override
                 public void run() {
                     long totalTime = System.currentTimeMillis() - startTime;
-                    Toast.makeText(BaseActivity.this, "Total interaction time: "+totalTime+" miliseconds", Toast.LENGTH_LONG).show();
-                    Log.i(TAG, "Total interaction time: "+totalTime+" miliseconds");
+                    Toast.makeText(BaseActivity.this, "Total interaction time: " + totalTime + " miliseconds", Toast.LENGTH_LONG).show();
+                    Log.i(TAG, "Total interaction time: " + totalTime + " miliseconds");
                 }
             });
             return;
@@ -335,7 +326,6 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseList
             //mAvsItemQueue.clear();
             avsQueue.remove(current);
         } else if (current instanceof AvsExpectSpeechItem) {
-
             //listen for user input
             audioPlayer.stop();
             avsQueue.clear();
@@ -415,15 +405,15 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseList
         new Handler(Looper.getMainLooper()).post(new Runnable() {
             @Override
             public void run() {
-                if(adjust) {
+                if (adjust) {
                     Toast.makeText(BaseActivity.this, "Volume adjusted.", Toast.LENGTH_SHORT).show();
-                }else{
+                } else {
                     Toast.makeText(BaseActivity.this, "Volume set to: " + (volume / 10), Toast.LENGTH_SHORT).show();
                 }
             }
         });
-
     }
+
     private void setMute(final boolean isMute){
         AudioManager am = (AudioManager) getSystemService(AUDIO_SERVICE);
         am.setStreamMute(AudioManager.STREAM_MUSIC, isMute);
@@ -450,11 +440,11 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseList
         inst.sendKeyDownUpSync(keyCode);
     }
 
-    private void setState(final int state){
+    private void setState(final int state) {
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                switch (state){
+                switch (state) {
                     case(STATE_LISTENING):
                         stateListening();
                         break;
@@ -484,5 +474,4 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseList
     protected abstract void stateFinished();
     protected abstract void statePrompting();
     protected abstract void stateNone();
-
 }

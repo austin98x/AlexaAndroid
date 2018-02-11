@@ -17,13 +17,12 @@ import static com.austin.android.alexa.R.id.frame;
  * Our main launch activity where we can change settings, see about, etc.
  */
 public class MainActivity extends BaseActivity implements ActionsFragment.ActionFragmentInterface, FragmentManager.OnBackStackChangedListener {
-    private final static String TAG = "MainActivity";
+    private final static String TAG = "Alexa/MainActivity";
     private final static String TAG_FRAGMENT = "CurrentFragment";
 
     private View statusBar;
     private TextView status;
     private View loading;
-
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -49,75 +48,73 @@ public class MainActivity extends BaseActivity implements ActionsFragment.Action
         Fragment fragment = getSupportFragmentManager().findFragmentByTag(TAG_FRAGMENT);
         if (fragment != null && fragment.isVisible()) {
             // add your code here
-            if(fragment instanceof BaseListenerFragment){
+            if(fragment instanceof BaseListenerFragment) {
                 ((BaseListenerFragment) fragment).startListening();
             }
         }
     }
 
     @Override
-    public void loadFragment(Fragment fragment, boolean addToBackStack){
+    public void loadFragment(Fragment fragment, boolean addToBackStack) {
         FragmentTransaction transaction = getSupportFragmentManager()
                 .beginTransaction()
                 .setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right, android.R.anim.fade_in, android.R.anim.fade_out)
                 .replace(frame, fragment, TAG_FRAGMENT);
-        if(addToBackStack){
+        if(addToBackStack) {
             transaction.addToBackStack(fragment.getClass().getSimpleName());
         }
         transaction.commit();
     }
 
-
-    protected void stateListening(){
-
+    protected void stateListening() {
         if(status != null) {
             status.setText(R.string.status_listening);
             loading.setVisibility(View.GONE);
             statusBar.animate().alpha(1);
         }
     }
-    protected void stateProcessing(){
 
+    protected void stateProcessing() {
         if(status != null) {
             status.setText(R.string.status_processing);
             loading.setVisibility(View.VISIBLE);
             statusBar.animate().alpha(1);
         }
     }
-    protected void stateSpeaking(){
 
+    protected void stateSpeaking() {
         if(status != null) {
             status.setText(R.string.status_speaking);
             loading.setVisibility(View.VISIBLE);
             statusBar.animate().alpha(1);
         }
     }
-    protected void statePrompting(){
 
+    protected void statePrompting() {
         if(status != null) {
             status.setText("");
             loading.setVisibility(View.VISIBLE);
             statusBar.animate().alpha(1);
         }
     }
-    protected void stateFinished(){
+
+    protected void stateFinished() {
         if(status != null) {
             status.setText("");
             loading.setVisibility(View.GONE);
             statusBar.animate().alpha(0);
         }
     }
-    protected void stateNone(){
+    protected void stateNone() {
         statusBar.animate().alpha(0);
     }
-
 
     @Override
     public void onBackStackChanged() {
         shouldDisplayHomeUp();
     }
 
-    public void shouldDisplayHomeUp(){
+    public void shouldDisplayHomeUp() {
         //Enable Up button only  if there are entries in the back stack
         boolean canback = (getSupportFragmentManager().getBackStackEntryCount() > 0);
         if(getSupportActionBar() != null) {
