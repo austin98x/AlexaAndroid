@@ -58,6 +58,11 @@ public class SendPrerecordedActionFragment extends BaseListenerFragment {
     }
 
     @Override
+    public void stopListening() {
+
+    }
+
+    @Override
     protected String getTitle() {
         return getString(R.string.fragment_action_send_prerecorded);
     }

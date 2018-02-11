@@ -43,8 +43,8 @@ public abstract class BaseListenerFragment extends Fragment {
         }
     }
 
-    protected AsyncCallback<AvsResponse, Exception> getRequestCallback(){
-        if(getActivity() != null && getActivity() instanceof AvsListenerInterface){
+    protected AsyncCallback<AvsResponse, Exception> getRequestCallback() {
+        if(getActivity() != null && getActivity() instanceof AvsListenerInterface) {
             return ((AvsListenerInterface) getActivity()).getRequestCallback();
         }
         return null;
@@ -88,14 +88,16 @@ public abstract class BaseListenerFragment extends Fragment {
 
     public abstract void startListening();
 
+    public abstract void stopListening();
+
     protected abstract String getTitle();
 
-    public interface AvsListenerInterface{
+    public interface AvsListenerInterface {
         AsyncCallback<AvsResponse, Exception> getRequestCallback();
     }
 
-    protected void loadFragment(Fragment fragment){
-        if(getActivity() != null && getActivity() instanceof ActionsFragment.ActionFragmentInterface){
+    protected void loadFragment(Fragment fragment) {
+        if(getActivity() != null && getActivity() instanceof ActionsFragment.ActionFragmentInterface) {
             ((ActionsFragment.ActionFragmentInterface) getActivity()).loadFragment(fragment, true);
         }
     }

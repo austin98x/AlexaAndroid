@@ -53,7 +53,7 @@ public class SendTextActionFragment extends BaseListenerFragment {
         });
     }
 
-    private void search(){
+    private void search() {
         String text = search.getText().toString();
         alexaManager.sendTextRequest(text, getRequestCallback());
     }
@@ -62,6 +62,11 @@ public class SendTextActionFragment extends BaseListenerFragment {
     public void startListening() {
         search.setText("");
         search.requestFocus();
+    }
+
+    @Override
+    public void stopListening() {
+
     }
 
     @Override

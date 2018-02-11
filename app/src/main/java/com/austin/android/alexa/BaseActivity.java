@@ -208,7 +208,7 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseList
         public void start() {
             startTime = System.currentTimeMillis();
             Log.i(TAG, "Event Start");
-            setState(STATE_PROCESSING);
+            setState(STATE_LISTENING);
         }
 
         @Override

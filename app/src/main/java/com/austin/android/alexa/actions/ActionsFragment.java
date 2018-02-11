@@ -27,6 +27,11 @@ public class ActionsFragment extends BaseListenerFragment {
     }
 
     @Override
+    public void stopListening() {
+
+    }
+
+    @Override
     protected String getTitle() {
         return getString(R.string.app_name);
     }
@@ -47,7 +52,7 @@ public class ActionsFragment extends BaseListenerFragment {
         recycler.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
     }
 
-    private List<ActionFragmentAdapter.ActionFragmentItem> getItems(){
+    private List<ActionFragmentAdapter.ActionFragmentItem> getItems() {
         List<ActionFragmentAdapter.ActionFragmentItem> items = new ArrayList<>();
 
         items.add(new ActionFragmentAdapter.ActionFragmentItem(getString(R.string.fragment_action_send_audio),
@@ -80,7 +85,7 @@ public class ActionsFragment extends BaseListenerFragment {
         return items;
     }
 
-    public interface ActionFragmentInterface{
+    public interface ActionFragmentInterface {
         void loadFragment(Fragment fragment, boolean addToBackstack);
     }
 }

@@ -1,6 +1,7 @@
 package com.austin.android.alexa.actions;
 
 import android.Manifest;
+import android.app.Activity;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -100,15 +101,6 @@ public class SendAudioActionFragment extends BaseListenerFragment {
         }
     }
 
-    @Override
-    public void startListening() {
-        if(recorder == null) {
-            recorder = new RawAudioRecorder(AUDIO_RATE);
-        }
-        recorder.start();
-        alexaManager.sendAudioRequest(requestBody, getRequestCallback());
-    }
-
     private DataRequestBody requestBody = new DataRequestBody() {
         @Override
         public void writeTo(BufferedSink sink) throws IOException {
@@ -142,7 +134,17 @@ public class SendAudioActionFragment extends BaseListenerFragment {
         }
     };
 
-    private void stopListening(){
+    @Override
+    public void startListening() {
+        if(recorder == null) {
+            recorder = new RawAudioRecorder(AUDIO_RATE);
+        }
+        recorder.start();
+        alexaManager.sendAudioRequest(requestBody, getRequestCallback());
+    }
+
+    @Override
+    public void stopListening(){
         if(recorder != null) {
             recorder.stop();
             recorder.release();
