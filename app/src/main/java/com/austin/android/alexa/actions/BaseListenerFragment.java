@@ -2,7 +2,6 @@ package com.austin.android.alexa.actions;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.annotation.RawRes;
 import android.support.v4.app.Fragment;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -51,15 +50,15 @@ public abstract class BaseListenerFragment extends Fragment {
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
-        inflater.inflate(R.menu.code_menu, menu);
+        inflater.inflate(R.menu.about_menu, menu);
 
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
-            case R.id.view_code:
-                DisplayCodeFragment fragment = DisplayCodeFragment.getInstance(getTitle(), getRawCode());
+            case R.id.about:
+                AboutFragment fragment = AboutFragment.getInstance(getTitle(), getAbout());
                 loadFragment(fragment);
                 return true;
         }
@@ -67,9 +66,12 @@ public abstract class BaseListenerFragment extends Fragment {
     }
 
     public abstract void startListening();
+
     protected abstract String getTitle();
-    @RawRes
-    protected abstract int getRawCode();
+
+    protected int getAbout() {
+        return R.raw.about;
+    }
 
     public interface AvsListenerInterface{
         AsyncCallback<AvsResponse, Exception> getRequestCallback();

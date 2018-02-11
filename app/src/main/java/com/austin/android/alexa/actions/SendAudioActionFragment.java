@@ -156,11 +156,4 @@ public class SendAudioActionFragment extends BaseListenerFragment {
     protected String getTitle() {
         return getString(R.string.fragment_action_send_audio);
     }
-
-    @Override
-    protected int getRawCode() {
-        return R.raw.code_audio;
-    }
-
-
 }

@@ -20,7 +20,7 @@ import java.io.InputStreamReader;
  * @author will on 5/30/2016.
  */
 
-public class DisplayCodeFragment extends Fragment {
+public class AboutFragment extends Fragment {
 
     private final static String ARG_TITLE = "title";
     private final static String ARG_RAW_CODE = "raw_code";
@@ -28,16 +28,16 @@ public class DisplayCodeFragment extends Fragment {
     String title;
     int rawCode;
 
-    public static DisplayCodeFragment getInstance(String title, @RawRes int rawCode){
+    public static AboutFragment getInstance(String title, @RawRes int rawCode){
         Bundle b = new Bundle();
         b.putString(ARG_TITLE, title);
         b.putInt(ARG_RAW_CODE, rawCode);
-        DisplayCodeFragment fragment = new DisplayCodeFragment();
+        AboutFragment fragment = new AboutFragment();
         fragment.setArguments(b);
         return fragment;
     }
 
-    public DisplayCodeFragment(){
+    public AboutFragment(){
 
     }
 
@@ -62,14 +62,14 @@ public class DisplayCodeFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_display_code, container, false);
+        return inflater.inflate(R.layout.fragment_about, container, false);
     }
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        TextView text = (TextView) view.findViewById(R.id.code);
+        TextView text = (TextView) view.findViewById(R.id.text);
 
         StringBuilder builder = new StringBuilder();
 
@@ -85,6 +85,5 @@ public class DisplayCodeFragment extends Fragment {
             e.printStackTrace();
         }
         text.setText(builder.toString());
-
     }
 }

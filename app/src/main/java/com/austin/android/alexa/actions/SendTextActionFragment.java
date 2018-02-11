@@ -68,9 +68,4 @@ public class SendTextActionFragment extends BaseListenerFragment {
     protected String getTitle() {
         return getString(R.string.fragment_action_send_text);
     }
-
-    @Override
-    protected int getRawCode() {
-        return R.raw.code_text;
-    }
 }

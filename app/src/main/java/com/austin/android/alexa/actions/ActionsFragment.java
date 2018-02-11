@@ -21,7 +21,6 @@ import java.util.List;
 
 public class ActionsFragment extends BaseListenerFragment {
 
-
     @Override
     public void startListening() {
 
@@ -30,11 +29,6 @@ public class ActionsFragment extends BaseListenerFragment {
     @Override
     protected String getTitle() {
         return getString(R.string.app_name);
-    }
-
-    @Override
-    protected int getRawCode() {
-        return R.raw.code_base;
     }
 
     @Nullable
@@ -84,7 +78,6 @@ public class ActionsFragment extends BaseListenerFragment {
 
         return items;
     }
-
 
     public interface ActionFragmentInterface{
         void loadFragment(Fragment fragment, boolean addToBackstack);

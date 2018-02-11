@@ -1,0 +1,13 @@
+<resources>
+    <string name="alexa_product_id">100000</string>
+    <string name="alexa_api">https://avs-alexa-na.amazon.com</string>
+    <string name="alexa_api_version">v20160207</string>
+
+    <string name="app_name">Alexa</string>
+    <string name="status_listening">正在录音…</string>
+    <string name="status_processing">正在处理…</string>
+    <string name="status_speaking">正在回答…</string>
+    <string name="fragment_action_send_text">发送文字请求</string>
+    <string name="fragment_action_send_audio">发送音频请求</string>
+    <string name="fragment_action_send_prerecorded">发送录制的音频请求</string>
+</resources>

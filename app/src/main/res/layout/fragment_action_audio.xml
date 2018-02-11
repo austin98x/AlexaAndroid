@@ -19,11 +19,4 @@
             android:id="@+id/recorder"/>
     </LinearLayout>
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#22ffffff"
-        android:text="@string/action_send_audio_description"
-        android:padding="@dimen/activity_horizontal_margin"/>
-
 </LinearLayout>
